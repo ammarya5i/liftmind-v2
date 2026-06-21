@@ -1,0 +1,39 @@
+LiftMind v2 — requirements (human-readable reference)
+=====================================================
+
+NOTE: This is a Node.js / Next.js project. The REAL, machine-read dependency
+manifest is package.json — `npm install` reads that, NOT this file. No tool
+installs from requirements.txt here; it's just a portable record of what v2
+needs to run, with exact versions living in package.json.
+
+Runtime prerequisites (install on the machine)
+----------------------------------------------
+- Node.js >= 18.18   (Next.js 15 requires 18.18+; Node 20 LTS recommended)
+- npm   >= 9         (ships with Node)
+
+Application libraries  (run `npm install`; versions in package.json)
+--------------------------------------------------------------------
+- next                  Next.js App Router (React framework)
+- react, react-dom      UI
+- @supabase/ssr         Supabase auth/session for Server + Client Components
+- @supabase/supabase-js Supabase client (Postgres + Auth + pgvector)
+- recharts              progress charts (Phase 1)
+- lucide-react          icons
+- zod                   input validation
+- @anthropic-ai/sdk     Claude coach — STAGED for Phase 3, not used yet
+
+Dev tooling  (devDependencies in package.json)
+----------------------------------------------
+- typescript
+- tailwindcss, postcss, autoprefixer
+- @types/node, @types/react, @types/react-dom
+
+Deferred (NOT installed yet — added in their phase to keep the app light)
+-------------------------------------------------------------------------
+- @xenova/transformers  local bge-small embeddings (Phase 4 memory)
+
+External services (no install; configured in .env.local)
+--------------------------------------------------------
+- Supabase project — Postgres + Auth + RLS + pgvector
+  Required env: NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+- Anthropic API key — server-only, Phase 3 (ANTHROPIC_API_KEY)

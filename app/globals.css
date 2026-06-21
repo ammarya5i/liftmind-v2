@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  /* Softer off-white than stark zinc-100 — easier on the eyes on a dark bg. */
+  @apply bg-zinc-950 font-sans text-zinc-200 antialiased;
+}
+
+/* A little tracking lets the condensed display face breathe. */
+.font-display {
+  letter-spacing: 0.012em;
+}
+
+/* Ambient background: deep base + electric/forge glows that bleed in from the
+   corners. Used on the app shell and marketing pages. */
+.bg-aurora {
+  background-color: #09090b;
+  background-image:
+    radial-gradient(55rem 55rem at 100% -10%, rgba(37, 99, 235, 0.16), transparent 60%),
+    radial-gradient(45rem 45rem at -10% 110%, rgba(249, 115, 22, 0.1), transparent 55%);
+  background-attachment: fixed;
+}
+
+@layer components {
+  .glass {
+    @apply rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl;
+  }
+  .glass-hover {
+    @apply transition duration-300 hover:-translate-y-0.5 hover:border-electric-500/40 hover:bg-white/[0.05] hover:shadow-glow;
+  }
+  .gradient-text {
+    /* Lighter, lower-neon accent that reads calmer against dark. */
+    @apply bg-gradient-to-r from-electric-300 via-sky-200 to-forge-300 bg-clip-text text-transparent;
+  }
+  .input {
+    @apply w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-zinc-100 placeholder-zinc-500 outline-none transition focus:border-electric-500/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-electric-500/20;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-electric-500 to-electric-600 px-5 py-3 text-sm font-semibold text-white shadow-glow transition hover:from-electric-400 hover:to-electric-500 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:active:scale-100;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm font-medium text-zinc-200 transition hover:border-white/25 hover:bg-white/[0.04];
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-zinc-300;
+  }
+}
+
+/* Slim custom scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+}
